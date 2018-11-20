@@ -1,3 +1,3 @@
 # FuzzyMemory
 
-<img src="https://media.giphy.com/media/EPMvTTzaZz7pu/giphy.gif" width="100%">
+<img src="https://media.giphy.com/media/wWswxzdEiCRiw/giphy.gif" width="100%">
