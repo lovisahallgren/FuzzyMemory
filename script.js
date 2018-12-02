@@ -1,34 +1,72 @@
 'use strict';
 
-const images = [
-  {image: './images/sheldon.jpeg' },
-  {image: './images/leonard.jpg' },
-  {image: './images/penny.jpg' },
-  {image: './images/howard.jpg' },
-  {image: './images/stuart.jpg' },
-  {image: './images/wil.jpg' },
-  {image: './images/amy.jpg' },
-  {image: './images/raj.jpg' },
-  {image: './images/bernadette.jpg' },
-  {image: './images/proton.jpg' },
+const cards = [
+  {
+    id: 'bild1',
+    img: './images/sheldon.jpeg'
+  },
+  { id: 'bild2',
+    img: './images/leonard.jpg'
+  },
+  {
+    id: 'bild3',
+    img: './images/penny.jpg'
+  },
+  {
+    id: 'bild4',
+    img: './images/howard.jpg'
+  },
+  {
+    id: 'bild5',
+    img: './images/stuart.jpg'
+  },
+  {
+    id: 'bild6',
+    img: './images/wil.jpg'
+  },
+  {
+    id: 'bild7',
+    img: './images/amy.jpg'
+  },
+  {
+    id: 'bild8',
+    img: './images/raj.jpg'
+  },
+  {
+    id: 'bild9',
+    img: './images/bernadette.jpg'
+  },
+  {
+    id: 'bild10',
+    img: './images/proton.jpg'
+  },
 ];
 
-const board = document.querySelector('.board');
+// const board = document.querySelector('.board');
+
+const cardElements = [...document.querySelectorAll('.card')];
+const image = [...document.querySelectorAll('.image')]
+const length = cards.length;
+
+cardElements.forEach((card, i) => {
+  (card.dataset.id = i % length)
+  image[i].setAttribute("src", (cards[i % length].img));
+
+  card.addEventListerner('click', handleClick);
+
+  // function handleClick() {
+  //   console.log('i was clicked' + card.dataset.id);
+  // }
 
 
-//creates card
-const createCard = (card) => {
-  return `
-  <div class="card" data-id=${card}>
-  </div>`
-};
 
-images.forEach((image) => {
-  board.innerHTML += createCard(image['image']);
-});
+})
+
+
+
 
 
 //checks if it's a pair
-const pair = (first, second) => {
-  return first === second;
-}
+// const pair = (first, second) => {
+//   return first === second;
+// }

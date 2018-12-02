@@ -14,21 +14,23 @@ body {
 }
 
 .board {
-  /* width: 50%;
-  height: 50%; */
+  width: 50%;
+  height: 50%;
   /* flex-direction: column; */
-  /* display: flex;
+  display: flex;
+  flex-wrap: wrap;
   justify-content: space-around;
-  align-items: center; */
+  align-items: center;
 }
 
-.card {
+.image {
   width: 100px;
   height: 100px;
-  margin: 10px;
+  /* margin: 10px; */
+  /* background-color: aquamarine; */
 }
 
-.card img {
+/* .card img {
   width: 100px;
   height: 100px;
-}
+} */
