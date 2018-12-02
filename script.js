@@ -49,6 +49,33 @@ const image = [...document.querySelectorAll('.image')]
 const length = cards.length;
 let first, second;
 
+// function shuffle(array) {
+//   let currentIndex = array.length
+//   , temporaryValue
+//   , randomIndex
+//   ;
+//
+//   while (0 !== currentIndex) {
+//     randomIndex = Math.floor(Math.random() * currentIndex);
+//     currentIndex -= 1;
+//
+//     temporaryValue = array[currentIndex];
+//     array[currentIndex] = array[randomIndex];
+//     array[randomIndex] = temporaryValue;
+//   }
+//
+//   return array;
+// }
+
+function shuffle(array) {
+	for (let i = array.length - 1; i > 0; i--) {
+		const j = Math.floor(Math.random() * (i + 1));
+		[array[i], array[j]] = [array[j], array[i]];
+	}
+}
+
+const shuffled = shuffle(cards);
+// const shuffledAgain = shuffle(image);
 
 cardElements.forEach((card, i) => {
   (card.dataset.id = i % length)
@@ -76,21 +103,4 @@ cardElements.forEach((card, i) => {
     }
   }
 
-
-  // const pair = (first, second) => {
-  //   return first === second;
-  //   // return card.classList.add('matched');
-  // }
-
-
-
 })
-
-
-
-
-
-//checks if it's a pair
-// const pair = (first, second) => {
-//   return first === second;
-// }
