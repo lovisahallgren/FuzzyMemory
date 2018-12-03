@@ -64,7 +64,6 @@ function shuffle(array) {
 
 const gameBoard = document.querySelector('.game-board');
 
-
 for (let i = 0; i < images.length; i++) {
   gameBoard.innerHTML += createCards(images, i);
 }
@@ -72,12 +71,22 @@ for (let i = 0; i < images.length; i++) {
 
 function handleClick() {
   this.classList.add('flipped');
+
+  if (!isFlipped) {
+    isFlipped = true;
+    first = this;
+    return
+  }
+  second = this;
+  first.dataset.id === second.dataset.id ? console.log("match") : console.log("not match"); ;
 }
 
 //spread operator - gives back an array instead of a node list
 const cards = [...document.querySelectorAll('.card')];
 const flippedCards = [...document.querySelectorAll('.flipped')];
 let idArray = [0, 0, 1, 1, 2, 2, 3, 3, 4, 4, 5, 5, 6, 6, 7, 7];
+let isFlipped = false;
+let first, second;
 
 shuffle(idArray);
 
@@ -85,7 +94,9 @@ cards.forEach((card, i) => {
   card.addEventListener('click', handleClick);
   let randomNumber = idArray[i];
   let randomImage = images[randomNumber];
+  //ger det vända kortet en bild från arrayen
   flippedCards[i].setAttribute("src", randomImage.img);
+  //samma bild får samma id
   card.dataset.id = randomNumber;
 });
 
