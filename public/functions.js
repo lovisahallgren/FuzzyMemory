@@ -2,13 +2,13 @@
 function createCards(array, i) {
   return `
   <div class="card" data-id="">
-    <img class="default" src="./images/bigbang.jpg">
-    <img class="flipped" src="">
+    <img class="back" src="./images/bigbang.jpg">
+    <img class="front" src="">
   </div>
 
   <div class="card" data-id="">
-    <img class="default" src="./images/bigbang.jpg">
-    <img class="flipped" src="">
+    <img class="back" src="./images/bigbang.jpg">
+    <img class="front" src="">
   </div> `
 }
 
