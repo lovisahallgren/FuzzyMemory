@@ -86,8 +86,7 @@ cards.forEach((card, i) => {
   let randomNumber = idArray[i];
   let randomImage = images[randomNumber];
   flippedCards[i].setAttribute("src", randomImage.img);
-  // console.log(randomImage);
-
+  card.dataset.id = randomNumber;
 });
 
 
