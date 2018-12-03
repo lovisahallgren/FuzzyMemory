@@ -3,8 +3,19 @@
   margin: 0;
 }
 
-.game-board {
+body {
+  background-color: rgb(245, 196, 152);
+  width: 100vw;
   height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: center;
+}
+
+.board {
+  height: 50%;
+  width: 50%;
   display: grid;
   grid-template-columns: 1fr 1fr 1fr 1fr;
   grid-template-rows: 1fr 1fr 1fr 1fr;
@@ -39,4 +50,13 @@
 
 .flipped {
   transform: rotateY(180deg);
+}
+
+button {
+  width: 15vh;
+  height: 5vh;
+  background-color: rgb(53, 133, 254);
+  color: rgb(255, 255, 255);
+  font-family: "Helvetica";
+  font-size: 2vh;
 }
