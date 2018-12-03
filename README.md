@@ -5,6 +5,9 @@
 ## Assignment
 The assignment was to build a memory in JavaScript. 
 
+## Tech
+Build in [Atom](https://atom.io) using HTML, CSS and vanilla JavaScript.
+
 ## Installation
 * Start by get a copy of the repo using either:
   - [this link](https://github.com/lovisahallgren/FuzzyMemory) in GitHub Desktop 
