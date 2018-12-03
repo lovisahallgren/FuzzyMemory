@@ -11,4 +11,4 @@ The assignment was to build a memory in JavaScript.
 * [Izabella Larsson](https://github.com/izabellalarsson)
 
 ## License
-This project is licensed under the MIT License - see the [LICENSE](https://github.com/lovisahallgren/FastSecurity/blob/master/LICENSE) file for details. &copy Lovisa Hallgren 
+MIT [LICENSE](https://github.com/lovisahallgren/FastSecurity/blob/master/LICENSE) © Lovisa Hallgren 
