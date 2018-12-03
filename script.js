@@ -1,7 +1,6 @@
-'use strict';
 
-const images = [
-  {
+
+const images = [{
     img: "images/sheldon.jpeg"
   },
   {
@@ -33,7 +32,7 @@ const images = [
   // },
 ];
 
-const createCards = (array, i) => {
+function createCards(array, i) {
   return `
   <div class="card" data-id="">
     <img class="default" src="./images/bigbang.jpg">
@@ -49,7 +48,7 @@ const createCards = (array, i) => {
 //Fisher Yates
 function shuffle(array) {
   let currentIndex = array.length,
-  temporaryValue, randomIndex;
+    temporaryValue, randomIndex;
 
   while (0 !== currentIndex) {
     randomIndex = Math.floor(Math.random() * currentIndex);
@@ -68,25 +67,46 @@ for (let i = 0; i < images.length; i++) {
   gameBoard.innerHTML += createCards(images, i);
 }
 
+//spread operator - gives back an array instead of a node list
+let idArray = [0, 0, 1, 1, 2, 2, 3, 3, 4, 4, 5, 5, 6, 6, 7, 7];
+let first, second;
+let isFlipped, disable = false;
+const cards = [...document.querySelectorAll('.card')];
+const flippedCards = [...document.querySelectorAll('.flipped')];
 
 function handleClick() {
-  this.classList.add('flipped');
-
+  if (disable || this === second) return
+  this.classList.add('flip');
   if (!isFlipped) {
     isFlipped = true;
     first = this;
     return
   }
   second = this;
-  first.dataset.id === second.dataset.id ? console.log("match") : console.log("not match"); ;
+  first.dataset.id === second.dataset.id ? match() : notMatch();
 }
 
-//spread operator - gives back an array instead of a node list
-const cards = [...document.querySelectorAll('.card')];
-const flippedCards = [...document.querySelectorAll('.flipped')];
-let idArray = [0, 0, 1, 1, 2, 2, 3, 3, 4, 4, 5, 5, 6, 6, 7, 7];
-let isFlipped = false;
-let first, second;
+function match() {
+  first.removeEventListener('click', handleClick);
+  second.removeEventListener('click', handleClick);
+  clear();
+}
+
+function notMatch() {
+  disable = true;
+  setTimeout(() => {
+    first.classList.remove('flip');
+    second.classList.remove('flip');
+    clear();
+  }, 800)
+}
+
+function clear() {
+  isFlipped = false;
+  disable = false;
+  first = null;
+  second = null;
+}
 
 shuffle(idArray);
 
@@ -95,48 +115,7 @@ cards.forEach((card, i) => {
   let randomNumber = idArray[i];
   let randomImage = images[randomNumber];
   //ger det vända kortet en bild från arrayen
+  card.dataset.id = randomNumber;
   flippedCards[i].setAttribute("src", randomImage.img);
   //samma bild får samma id
-  card.dataset.id = randomNumber;
 });
-
-
-
-
-
-
-// const cardElements = [...document.querySelectorAll('.card')];
-//
-// const images = [...document.querySelectorAll('.image')];
-//
-// let first, second;
-//
-//
-// cardElements.forEach((card, i) => {
-//   let randNum = idArray[i];
-//   randomImage = cards[randNum].img;
-//   images[i].setAttribute("src", randomImage);
-//   card.dataset.id = randNum + 1;
-//
-//   card.addEventListener('click', function handleClick (event) {
-//     card.classList.add('clicked');
-//     cardId = card.dataset.id;
-//     first = second;
-//     second = cardId;
-//
-//     if (first == cardId) {
-//       event.target.classList.toggle('matched');
-//       let matches = document.querySelectorAll(`[data-id="${first}"]`);
-//       matches.forEach(match => {
-//         match.classList.add('matched');
-//         match.classList.remove('clicked');
-//         match.removeEventListener('click', handleClick)
-//       })
-//     } else if (first !== cardId && second !== first) {
-//       let noMatches = document.querySelectorAll(`[data-id="${first}"]`);
-//       noMatches.forEach((noMatch, i) => {
-//         noMatch.classList.remove('clicked');
-//       })
-//     }
-//   });
-// });
