@@ -46,44 +46,61 @@ const createCards = (array, i) => {
   </div> `
 }
 
+//Fisher Yates
+function shuffle(array) {
+  let currentIndex = array.length,
+  temporaryValue, randomIndex;
+
+  while (0 !== currentIndex) {
+    randomIndex = Math.floor(Math.random() * currentIndex);
+    currentIndex -= 1;
+
+    temporaryValue = array[currentIndex];
+    array[currentIndex] = array[randomIndex];
+    array[randomIndex] = temporaryValue;
+  }
+  return array;
+}
+
 const gameBoard = document.querySelector('.game-board');
+
 
 for (let i = 0; i < images.length; i++) {
   gameBoard.innerHTML += createCards(images, i);
 }
 
-//spread operator
+
+function handleClick() {
+  this.classList.add('flipped');
+}
+
+//spread operator - gives back an array instead of a node list
 const cards = [...document.querySelectorAll('.card')];
+const flippedCards = [...document.querySelectorAll('.flipped')];
+let idArray = [0, 0, 1, 1, 2, 2, 3, 3, 4, 4, 5, 5, 6, 6, 7, 7];
+
+shuffle(idArray);
+
+cards.forEach((card, i) => {
+  card.addEventListener('click', handleClick);
+  let randomNumber = idArray[i];
+  let randomImage = images[randomNumber];
+  flippedCards[i].setAttribute("src", randomImage.img);
+  // console.log(randomImage);
+
+});
 
 
 
-console.log(cards);
 
-// let idArray = [0, 0, 1, 1, 2, 2, 3, 3, 4, 4, 5, 5, 6, 6, 7, 7, 8, 8, 9, 9];
-//
-//
+
+
 // const cardElements = [...document.querySelectorAll('.card')];
 //
 // const images = [...document.querySelectorAll('.image')];
 //
 // let first, second;
 //
-// function shuffle(array) {
-//   let currentIndex = array.length,
-//   temporaryValue, randomIndex;
-//
-//   while (0 !== currentIndex) {
-//     randomIndex = Math.floor(Math.random() * currentIndex);
-//     currentIndex -= 1;
-//
-//     temporaryValue = array[currentIndex];
-//     array[currentIndex] = array[randomIndex];
-//     array[randomIndex] = temporaryValue;
-//   }
-//   return array;
-// }
-//
-// shuffle(idArray);
 //
 // cardElements.forEach((card, i) => {
 //   let randNum = idArray[i];
