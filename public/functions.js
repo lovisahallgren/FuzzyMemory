@@ -28,7 +28,7 @@ function shuffle(array) {
   return array;
 }
 
-// Function for turning around the cards
+// Function for turning around the cards on click
 function handleClick() {
   if (disable || this === second) return
   this.classList.add('flip');
@@ -42,13 +42,16 @@ function handleClick() {
 }
 
 // Checks if the choosen cards are a match and in that case removes eventlistener
+// and adds class match
 function match() {
   first.removeEventListener('click', handleClick);
   second.removeEventListener('click', handleClick);
+	first.classList.add('match');
+	second.classList.add('match');
   clear();
 }
 
-// If the cards aren't a match it removes the class flip
+// If the cards aren't a match it turns around the card again
 function notMatch() {
   disable = true;
   setTimeout(() => {
@@ -58,7 +61,7 @@ function notMatch() {
   }, 800)
 }
 
-//Adds image to cards
+//Starts game, adds images to cards
 function playGame (){
 cards.forEach((card, i) => {
   card.addEventListener('click', handleClick);
@@ -77,10 +80,11 @@ function clear() {
   second = null;
 }
 
-// Starts game
+// Restarts game
 function restartGame() {
   cards.forEach((card) => {
     card.classList.remove('flip');
+    card.classList.remove('match');
     card.addEventListener('click', handleClick);
     shuffle(idArray);
     playGame();
