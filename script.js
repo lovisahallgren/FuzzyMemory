@@ -1,5 +1,3 @@
-
-
 const images = [{
     img: "images/sheldon.jpeg"
   },
@@ -32,8 +30,8 @@ const images = [{
   // },
 ];
 
-const gameBoard = document.querySelector('.board');
 const restartButton = document.querySelector('.replay-button');
+const gameBoard = document.querySelector('.board');
 
 for (let i = 0; i < images.length; i++) {
   gameBoard.innerHTML += createCards(images, i);
@@ -46,16 +44,9 @@ let isFlipped, disable = false;
 const cards = [...document.querySelectorAll('.card')];
 const flippedCards = [...document.querySelectorAll('.flipped')];
 
+
 shuffle(idArray);
 
-cards.forEach((card, i) => {
-  card.addEventListener('click', handleClick);
-  let randomNumber = idArray[i];
-  let randomImage = images[randomNumber];
-  card.dataset.id = randomNumber;
-  flippedCards[i].setAttribute("src", randomImage.img);
-});
-
-restartButton.addEventListener('click', () => {
-  location.reload();
-})
+playGame()
+restartButton.addEventListener('click', restartGame);
+restartGame();

@@ -58,7 +58,18 @@ function notMatch() {
   }, 800)
 }
 
-// clears the previous clicks
+//Adds image to cards
+function playGame (){
+cards.forEach((card, i) => {
+  card.addEventListener('click', handleClick);
+  let randomNumber = idArray[i];
+  let randomImage = images[randomNumber];
+  card.dataset.id = randomNumber;
+  flippedCards[i].setAttribute("src", randomImage.img);
+});
+}
+
+// Clears the previous clicks
 function clear() {
   isFlipped = false;
   disable = false;
@@ -66,4 +77,13 @@ function clear() {
   second = null;
 }
 
-// function for the restart button
+// Starts game
+function restartGame() {
+  cards.forEach((card) => {
+    card.classList.remove('flip');
+    card.addEventListener('click', handleClick);
+    shuffle(idArray);
+    playGame();
+    clear();
+  })
+}
