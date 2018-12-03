@@ -1,59 +1,76 @@
 'use strict';
 
-const cards = [
+const images = [
   {
-    id: 'bild1',
-    img: './images/sheldon.jpeg'
-  },
-  { id: 'bild2',
-    img: './images/leonard.jpg'
+    img: "images/sheldon.jpeg"
   },
   {
-    id: 'bild3',
-    img: './images/penny.jpg'
+    img: "images/leonard.jpg"
   },
   {
-    id: 'bild4',
-    img: './images/howard.jpg'
+    img: "images/penny.jpg"
   },
   {
-    id: 'bild5',
-    img: './images/stuart.jpg'
+    img: "images/howard.jpg"
   },
   {
-    id: 'bild6',
-    img: './images/wil.jpg'
+    img: "images/stuart.jpg"
   },
   {
-    id: 'bild7',
-    img: './images/amy.jpg'
+    img: "images/wil.jpg"
   },
   {
-    id: 'bild8',
-    img: './images/raj.jpg'
+    img: "images/amy.jpg"
   },
   {
-    id: 'bild9',
-    img: './images/bernadette.jpg'
+    img: "images/raj.jpg"
   },
-  {
-    id: 'bild10',
-    img: './images/proton.jpg'
-  },
+  // {
+  //   img: "images/bernadette.jpg"
+  // },
+  // {
+  //   img: "images/proton.jpg"
+  // },
 ];
 
-// const board = document.querySelector('.board');
+const createCards = (array, i) => {
+  return `
+  <div class="card" data-id="">
+    <img class="default" src="./images/bigbang.jpg">
+    <img class="flipped" src="">
+  </div>
 
-const cardElements = [...document.querySelectorAll('.card')];
-const image = [...document.querySelectorAll('.image')]
-const length = cards.length;
-let first, second;
+  <div class="card" data-id="">
+    <img class="default" src="./images/bigbang.jpg">
+    <img class="flipped" src="">
+  </div> `
+}
 
+const gameBoard = document.querySelector('.game-board');
+
+for (let i = 0; i < images.length; i++) {
+  gameBoard.innerHTML += createCards(images, i);
+}
+
+//spread operator
+const cards = [...document.querySelectorAll('.card')];
+
+
+
+console.log(cards);
+
+// let idArray = [0, 0, 1, 1, 2, 2, 3, 3, 4, 4, 5, 5, 6, 6, 7, 7, 8, 8, 9, 9];
+//
+//
+// const cardElements = [...document.querySelectorAll('.card')];
+//
+// const images = [...document.querySelectorAll('.image')];
+//
+// let first, second;
+//
 // function shuffle(array) {
-//   let currentIndex = array.length
-//   , temporaryValue
-//   , randomIndex
-//   ;
+//   let currentIndex = array.length,
+//   temporaryValue, randomIndex;
 //
 //   while (0 !== currentIndex) {
 //     randomIndex = Math.floor(Math.random() * currentIndex);
@@ -63,44 +80,36 @@ let first, second;
 //     array[currentIndex] = array[randomIndex];
 //     array[randomIndex] = temporaryValue;
 //   }
-//
 //   return array;
 // }
-
-function shuffle(array) {
-	for (let i = array.length - 1; i > 0; i--) {
-		const j = Math.floor(Math.random() * (i + 1));
-		[array[i], array[j]] = [array[j], array[i]];
-	}
-}
-
-const shuffled = shuffle(cards);
-// const shuffledAgain = shuffle(image);
-
-cardElements.forEach((card, i) => {
-  (card.dataset.id = i % length)
-  image[i].setAttribute("src", (cards[i % length].img));
-
-  const cardId = card.dataset.id;
-
-  card.addEventListener('click', handleClick);
-
-  function handleClick() {
-    card.classList.add('clicked');
-    first = second;
-    second = cardId;
-
-    if (first == cardId) {
-      let matches = document.querySelectorAll(`[data-id="${first}"]`);
-      matches.forEach((match) => {
-        match.classList.add('matched')
-      })
-    } else if (first !== cardId && second !== first) {
-      let notMatches = document.querySelectorAll(`[data-id="${first}"]`);
-      notMatches.forEach((noMatch) => {
-        noMatch.classList.remove('clicked');
-      })
-    }
-  }
-
-})
+//
+// shuffle(idArray);
+//
+// cardElements.forEach((card, i) => {
+//   let randNum = idArray[i];
+//   randomImage = cards[randNum].img;
+//   images[i].setAttribute("src", randomImage);
+//   card.dataset.id = randNum + 1;
+//
+//   card.addEventListener('click', function handleClick (event) {
+//     card.classList.add('clicked');
+//     cardId = card.dataset.id;
+//     first = second;
+//     second = cardId;
+//
+//     if (first == cardId) {
+//       event.target.classList.toggle('matched');
+//       let matches = document.querySelectorAll(`[data-id="${first}"]`);
+//       matches.forEach(match => {
+//         match.classList.add('matched');
+//         match.classList.remove('clicked');
+//         match.removeEventListener('click', handleClick)
+//       })
+//     } else if (first !== cardId && second !== first) {
+//       let noMatches = document.querySelectorAll(`[data-id="${first}"]`);
+//       noMatches.forEach((noMatch, i) => {
+//         noMatch.classList.remove('clicked');
+//       })
+//     }
+//   });
+// });
