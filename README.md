@@ -6,9 +6,9 @@
 The assignment was to build a memory in JavaScript. 
 
 ## Installation
-* Start by get a copy of the repo using 
+* Start by get a copy of the repo using either
   - [this link](https://github.com/lovisahallgren/FuzzyMemory) in GitHub Desktop 
- * or 
+ OR
   - `git clone https://github.com/lovisahallgren/FuzzyMemory.git` in bash.
 * Open your local web server. 
 * Open the `public/index.html` file in your browser.
