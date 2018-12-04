@@ -46,8 +46,6 @@ function handleClick() {
 function match() {
   first.removeEventListener('click', handleClick);
   second.removeEventListener('click', handleClick);
-	first.classList.add('match');
-	second.classList.add('match');
   clear();
 }
 
@@ -84,7 +82,6 @@ function clear() {
 function restartGame() {
   cards.forEach((card) => {
     card.classList.remove('flip');
-    card.classList.remove('match');
     card.addEventListener('click', handleClick);
     shuffle(idArray);
     playGame();
